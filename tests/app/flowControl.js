@@ -7,12 +7,18 @@ define([ 'use!underscore' ], function(_) {
     });
 
     it("you should be able to conditionally branch your code", function() {
-      fn = function() {
+      fn = function(num) {
         // write a function that receives a number as its argument;
+        var result = '';
         // if the number is divisible by 3, the function should return 'fizz';
+        if (num % 3 === 0)
+          result += 'fizz';
         // if the number is divisible by 5, the function should return 'buzz';
+        if (num % 5 === 0)
+          result += 'buzz';
         // if the number is divisible the 3 and 5, the function should return
         // 'fizzbuzz';
+        return result || num;
         // otherwise the function should return the number
       };
 
@@ -26,10 +32,12 @@ define([ 'use!underscore' ], function(_) {
     it("you should be able to work with logical operators", function() {
       var and = function(val1, val2) {
             // write a function that makes the tests below pass
+            return val1 && val2;
           },
 
           or = function(val1, val2) {
             // write a function that makes the tests below pass
+            return val1 || val2;
           };
 
       expect(and(false, false)).not.to.be.ok();
