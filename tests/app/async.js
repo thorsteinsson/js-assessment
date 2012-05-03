@@ -11,6 +11,9 @@ define([ 'jquery', 'use!underscore' ], function($, _) {
 
       fn = function() {
         // write a function that makes the test pass
+        var deferred = $.Deferred();
+        deferred.resolve(true);
+        return deferred.promise();
       };
 
       fn().then(function(result) {
@@ -33,8 +36,10 @@ define([ 'jquery', 'use!underscore' ], function($, _) {
       // replace the call to the tests function below with code that calls the
       // tests function once the data has been a) retrieved from the server and
       // b) manipulated so the tests will pass.
-
-      tests();
+      $.getJSON(url, function(result) {
+        peopleArray = _.pluck(result.people, 'name').sort();
+        tests();
+      });
     });
   });
 });
